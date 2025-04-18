@@ -1,0 +1,64 @@
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: #f8ede3;
+  color: #604652; /* from a previous palette for text contrast */
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: #c5705d;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+header {
+  background-color: #d0b8a8;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 12px;
+  color: #f8ede3;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #c5705d;
+}
+
+section {
+  padding: 2rem;
+  background-color: #dfd3c3;
+  margin: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #c5705d;
+  color: white;
+}
+
+.button {
+  display: inline-block;
+  background: #c5705d;
+  color: white;
+  padding: 10px 22px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: #a35c4c;
+}

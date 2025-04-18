@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/cw-favicon.png?v=2" />
+    <title>Home | Caden Wieties</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        background-color: #f8ede3;
+        color: #604652;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+
+      .nav-wrapper {
+        background-color: #c5705d;
+        position: relative;
+        z-index: 2;
+      }
+
+      nav {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      nav a {
+        margin: 0 12px;
+        color: #f8ede3;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #dfd3c3;
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #c5705d;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid #c5705d;
+        animation: typing-name 2s steps(15, end) forwards,
+          blink 0.75s step-end infinite;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: #604652;
+        min-height: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid #c5705d;
+        animation: blink 0.75s step-end infinite;
+        display: none;
+      }
+
+      @keyframes typing-name {
+        from {
+          width: 0;
+        }
+        to {
+          width: 15ch;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background: #c5705d;
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="nav-wrapper">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+
+    <main>
+      <div class="hero" id="hero">Caden Wieties</div>
+      <div class="subtitle" id="subtitle"></div>
+    </main>
+
+    <footer>
+      <p>© 2025 Caden Wieties</p>
+    </footer>
+
+    <!-- Typing animation -->
+    <script>
+      const subtitleElement = document.getElementById("subtitle");
+      const heroElement = document.getElementById("hero");
+      const phrases = ["Computer Science", "Student", "Climber"];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let typing = true;
+
+      function typeLoop() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (typing) {
+          subtitleElement.textContent = currentPhrase.slice(0, ++charIndex);
+          if (charIndex === currentPhrase.length) {
+            typing = false;
+            setTimeout(typeLoop, 1600);
+            return;
+          }
+        } else {
+          subtitleElement.textContent = currentPhrase.slice(0, --charIndex);
+          if (charIndex === 0) {
+            typing = true;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+        }
+
+        setTimeout(typeLoop, typing ? 100 : 50);
+      }
+
+      setTimeout(() => {
+        heroElement.style.borderRight = "none";
+        heroElement.style.animation = "none";
+        subtitleElement.style.display = "inline-block";
+        typeLoop();
+      }, 2200);
+    </script>
+
+    <!-- Background animation -->
+    <script>
+      const canvas = document.getElementById("bgCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let width, height, dots;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        dots = Array.from({ length: 100 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2 + 1,
+          dx: Math.random() * 0.5 - 0.25,
+          dy: Math.random() * 0.5 - 0.25,
+        }));
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(96, 70, 82, 0.2)";
+        dots.forEach((dot) => {
+          dot.x += dot.dx;
+          dot.y += dot.dy;
+
+          if (dot.x < 0 || dot.x > width) dot.dx *= -1;
+          if (dot.y < 0 || dot.y > height) dot.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+      animate();
+    </script>
+  </body>
+</html>

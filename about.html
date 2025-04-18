@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/cw-favicon.png?v=2" />
+    <title>About | Caden Wieties</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+      body {
+        background: url("images/about-background.jpg") no-repeat center center
+          fixed;
+        background-size: cover;
+        color: #a97e72;
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      p,
+      li,
+      h1,
+      h2,
+      blockquote {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      }
+
+      strong {
+        color: #a35c4c;
+      }
+
+      .nav-wrapper {
+        background-color: #c5705d;
+      }
+
+      nav {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      nav a {
+        margin: 0 12px;
+        color: #f8ede3;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.25s ease;
+      }
+
+      nav a:hover {
+        color: #dfd3c3;
+        text-shadow: 0 0 4px #fff;
+        transform: scale(1.05);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .intro {
+        background-color: rgba(223, 211, 195, 0.95);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .bottom-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .climbing-section,
+      .music-section {
+        flex: 1 1 45%;
+        background-color: rgba(223, 211, 195, 0.95);
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .climbing-content {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .climbing-content img {
+        width: 50%;
+        border-radius: 12px;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, filter 0.3s ease;
+        filter: grayscale(40%);
+      }
+
+      .climbing-content img:hover {
+        transform: scale(1.03);
+        filter: grayscale(0%);
+      }
+
+      iframe {
+        width: 100%;
+        height: 450px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #c5705d;
+        color: white;
+      }
+
+      blockquote {
+        font-style: italic;
+        margin-top: 1rem;
+        color: #604652;
+      }
+
+      @media (max-width: 800px) {
+        .bottom-section {
+          flex-direction: column;
+        }
+
+        .climbing-content {
+          flex-direction: column;
+        }
+
+        .climbing-content img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-wrapper">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+
+    <main class="fade-in">
+      <section class="intro" data-aos="fade-up">
+        <h1 style="color: #c5705d">About Me</h1>
+        <p>
+          Hey, I'm Caden Wieties — a computer science student at the University
+          of Arkansas. I build software that feels personal and useful, whether
+          it's a climbing tracker or a personal website like this one. I care
+          about clean design, creatuve functionality, and thoughtful
+          interaction.
+        </p>
+        <p>
+          Outside of coding, I'm into rock climbing, music, and exploring the
+          creative intersections between tech and life. Oh yeah, and I am
+          pursuring a minor in mathematics, I love math!
+        </p>
+        <p>
+          <strong style="color: #a35c4c"><u>Some Notes</u></strong
+          ><br />
+          <strong>• Languages:</strong> C++, Java, Python, HTML/CSS<br />
+          <strong>• Tools & Platforms</strong> Linux (WSL / Ubunut), Bash,
+          Visual Studio Code, Eclipe IDE<br />
+          <strong>• Core Skills:</strong> Problem Solving, Teamwork, Leadership,
+          Time Management, Adaptability, Communication
+          <br />
+        </p>
+      </section>
+
+      <section class="bottom-section">
+        <div class="climbing-section" data-aos="fade-right">
+          <h2 style="color: #c5705d">Climbing Corner</h2>
+          <div class="climbing-content">
+            <img src="images/climbing-photo.jpg" alt="Caden climbing" />
+            <div>
+              <p><strong style="color: #a35c4c">Information:</strong></p>
+              <ul>
+                <li><strong>Gym:</strong> Boulders and Brews</li>
+                <li><strong>Goal:</strong> Send an outdoor V10 next season.</li>
+                <li><strong>Favorite Style:</strong> Dynamic moves.</li>
+                <li><strong>Years Climbing:</strong> 2</li>
+              </ul>
+              <p><strong style="color: #a35c4c">Achievements:</strong></p>
+              <ul>
+                <li>Boulder League Winner (2024)</li>
+                <li>Kilter Board Grade: V9</li>
+                <li>Flash Grade: V8</li>
+              </ul>
+              <p><strong style="color: #a35c4c">Current Gear:</strong></p>
+              <ul>
+                <li><strong>Shoes:</strong> Scarpa Drago LV</li>
+                <li><strong>Chalk:</strong> Metolious Super Chalk</li>
+                <li><strong>Climb Snack:</strong> Turkey Bites</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="music-section" data-aos="fade-left">
+          <h2 style="color: #c5705d">Current Mix</h2>
+          <p>This is what I’m probably climbing, coding, or chilling to:</p>
+          <iframe
+            allow="autoplay *; encrypted-media *;"
+            frameborder="0"
+            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+            src="https://embed.music.apple.com/us/playlist/my-mix/pl.u-KVXBBlJuLoG4epy"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Caden Wieties</p>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
