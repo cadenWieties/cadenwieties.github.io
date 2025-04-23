@@ -45,12 +45,84 @@
 
       main {
         flex: 1;
-        max-width: 800px;
+        width: 90%;
+        max-width: 1100px;
         margin: 2rem auto;
         padding: 2rem;
         background-color: #dfd3c3;
         border-radius: 12px;
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.05);
+        overflow-y: auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: #c5705d;
+      }
+
+      .project {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #c5705d;
+        padding-bottom: 1rem;
+      }
+
+      .project-title {
+        cursor: pointer;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2rem;
+        color: #604652;
+      }
+
+      .project-details {
+        display: none;
+        margin-top: 0.5rem;
+        animation: dropDown 0.3s ease forwards;
+      }
+
+      @keyframes dropDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: #a08963;
+        color: white;
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+        margin: 2px;
+      }
+
+      .status-badge {
+        display: inline-block;
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+        margin: 2px 0 8px 0;
+        color: white;
+      }
+
+      .status-inprogress {
+        background-color: #e0a800;
+      }
+
+      .status-completed {
+        background-color: #4caf50;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: #c5705d;
       }
 
       footer {
@@ -73,22 +145,99 @@
     </div>
 
     <main>
-      <h1>Projects [IN PROGRESS PAGE]</h1>
-      <ul>
-        <li>
-          <strong>Climbing Tracker App:</strong> [IN PROGRESS] Full-stack app
-          using Node.js, Express, React. Logs sends, projects, and progress.
-        </li>
-        <li>
-          <strong>Portfolio Website:</strong> Built from scratch with HTML/CSS
-          and love. Designed to feel personal, clean, and give a feel as to who
-          I am.
-        </li>
-      </ul>
+      <h1>Projects</h1>
+
+      <div class="project">
+        <div class="project-title" onclick="toggleDetails(this)">
+          <span>Climbing Tracker App</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="project-details">
+          <span class="status-badge status-inprogress">In Progress</span>
+          <p>
+            This app allows users to create accounts, log climbing sends, and
+            track their progress. Users can add details such as grades,
+            location, type, date, and notes. Media uploads, user interaction,
+            training tracking, and data analysis capabilities are under
+            development.
+          </p>
+          <p><strong>Stack:</strong></p>
+          <span class="badge">React</span>
+          <span class="badge">TailwindCSS</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">Express</span>
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">JWT</span>
+          <span class="badge">Supabase</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-title" onclick="toggleDetails(this)">
+          <span>Programming Foundations II Project</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="project-details">
+          <span class="status-badge status-completed">Completed</span>
+          <p>
+            Semester-long additive C++ project building data structures and
+            algorithms. Included a Boggle solver, recursive flood fill, priority
+            queue, and a custom hash table from scratch. Project was a
+            foundational part of my coding journey.
+          </p>
+          <p><strong>Stack:</strong></p>
+          <span class="badge">C++</span>
+          <span class="badge">Linux</span>
+          <span class="badge">Data Structures</span>
+          <span class="badge">Algorithms</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-title" onclick="toggleDetails(this)">
+          <span>Portfolio Website</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="project-details">
+          <span class="status-badge status-completed"
+            >Completed -- Expandable</span
+          >
+          <p>
+            Personal website built from scratch to showcase my development and
+            personality. Fully responsive and styled to reflect my creative
+            approach to UI/UX and tech.
+          </p>
+          <p><strong>Stack:</strong></p>
+          <span class="badge">HTML</span>
+          <span class="badge">CSS</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">GitHub Pages</span>
+        </div>
+      </div>
     </main>
 
     <footer>
       <p>© 2025 Caden Wieties</p>
     </footer>
+
+    <script>
+      function toggleDetails(element) {
+        const details = element.nextElementSibling;
+        const icon = element.querySelector(".toggle-icon");
+        const isOpen = details.style.display === "block";
+
+        document.querySelectorAll(".project-details").forEach((detail) => {
+          detail.style.display = "none";
+        });
+        document.querySelectorAll(".toggle-icon").forEach((icon) => {
+          icon.textContent = "+";
+        });
+
+        if (!isOpen) {
+          details.style.display = "block";
+          icon.textContent = "-";
+        }
+      }
+    </script>
   </body>
 </html>

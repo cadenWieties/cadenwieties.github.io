@@ -45,7 +45,7 @@
 
       main {
         flex: 1;
-        max-width: 800px;
+        max-width: 900px;
         margin: 2rem auto;
         padding: 2rem;
         background-color: #dfd3c3;
@@ -53,18 +53,40 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.05);
       }
 
-      .contact-info {
-        line-height: 2;
-      }
-
-      a.contact-link {
+      h1 {
+        text-align: center;
         color: #c5705d;
-        text-decoration: none;
-        font-weight: 600;
+        margin-bottom: 2rem;
       }
 
-      a.contact-link:hover {
-        text-decoration: underline;
+      .contact-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .card {
+        background-color: #f8ede3;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.05);
+        flex: 1 1 250px;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card a {
+        text-decoration: none;
+        color: #c5705d;
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: block;
+        margin-top: 0.5rem;
       }
 
       footer {
@@ -87,36 +109,32 @@
     </div>
 
     <main>
-      <h1>Contact [IN PROGRESS PAGE]</h1>
-      <div class="contact-info">
-        <p>
-          Email:
-          <a class="contact-link" href="mailto:cwieties@uark.edu"
-            >cwieties@uark.edu</a
+      <h1>Contact</h1>
+      <div class="contact-cards">
+        <div class="card">
+          <p>Email</p>
+          <a href="mailto:cadenmw786@gmail.com">cadenmw786@gmail.com</a>
+        </div>
+        <div class="card">
+          <p>GitHub</p>
+          <a href="https://github.com/cadenWieties" target="_blank"
+            >github.com/cadenWieties</a
           >
-        </p>
-        <p>
-          LinkedIn:
-          <a
-            class="contact-link"
-            href="https://www.linkedin.com/in/cadenwieties/"
-            target="_blank"
-            >linkedin.com/in/cadenwieties/</a
+        </div>
+        <div class="card">
+          <p>LinkedIn</p>
+          <a href="https://www.linkedin.com/in/cadenwieties/" target="_blank"
+            >linkedin.com/in/cadenwieties</a
           >
-        </p>
-        <p>
-          Instagram:
+        </div>
+        <div class="card">
+          <p>Instagram</p>
           <a
-            class="contact-link"
             href="https://www.instagram.com/cadenwieties/?hl=en"
             target="_blank"
             >@cadenwieties</a
           >
-        </p>
-        <p>
-          Discord:
-          <a class="word">caden2005</a>
-        </p>
+        </div>
       </div>
     </main>
 
