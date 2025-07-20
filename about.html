@@ -10,7 +10,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
       body {
         background-color: #f8ede3;
@@ -21,18 +20,6 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-      }
-
-      p,
-      li,
-      h1,
-      h2,
-      blockquote {
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-      }
-
-      strong {
-        color: #a35c4c;
       }
 
       .nav-wrapper {
@@ -66,66 +53,118 @@
         padding: 2rem;
       }
 
-      .fade-in {
-        opacity: 0;
-        animation: fadeIn 1s ease-in-out forwards;
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      .intro {
+      .intro,
+      .experience-section,
+      .music-section,
+      .climbing-section {
         background-color: rgba(223, 211, 195, 0.95);
         padding: 2rem;
         border-radius: 12px;
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .intro {
         text-align: center;
       }
 
-      .bottom-section {
+      .badge {
+        display: inline-block;
+        background-color: #a08963;
+        color: white;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 10px;
+        margin: 3px 4px;
+      }
+
+      .section-row {
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
       }
 
-      .climbing-section,
+      .experience-section,
       .music-section {
         flex: 1 1 45%;
-        background-color: rgba(223, 211, 195, 0.95);
-        padding: 1rem;
-        border-radius: 12px;
-        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      .climbing-content {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        align-items: center;
-      }
-
-      .climbing-content img {
-        width: 50%;
-        border-radius: 12px;
-        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, filter 0.3s ease;
-        filter: grayscale(40%);
-      }
-
-      .climbing-content img:hover {
-        transform: scale(1.03);
-        filter: grayscale(0%);
-      }
-
-      iframe {
-        width: 100%;
-        height: 450px;
-        border: none;
-        border-radius: 8px;
+      .music-wrapper {
         margin-top: 1rem;
+        width: 100%;
+        max-width: 350px;
+        aspect-ratio: 1.8 / 1;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+
+      .music-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        overflow: hidden;
+        border-radius: 12px;
+        display: block;
+      }
+
+      .toggle-title {
+        cursor: pointer;
+        font-weight: bold;
+        color: #c5705d;
+        margin-top: 1rem;
+        user-select: none;
+      }
+
+      .toggle-icon {
+        font-size: 1rem;
+        margin-left: 5px;
+      }
+
+      .toggle-content {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.4s ease;
+      }
+
+      .toggle-content.open {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 0.5rem;
+      }
+
+      .climbing-section img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 12px;
+        box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.3);
+        margin-top: 1rem;
+      }
+
+      .climbing-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: flex-start;
+      }
+
+      .climbing-gallery img {
+        flex: 1 1 30%;
+        max-width: 32%;
+        aspect-ratio: 3 / 4; /* Forces consistent crop shape */
+        object-fit: cover; /* Crops inside the box, keeps the center */
+        border-radius: 12px;
+        box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.3);
+        height: auto;
+      }
+
+      /* Responsive stacking on smaller screens */
+      @media (max-width: 700px) {
+        .climbing-gallery img {
+          max-width: 100%;
+          flex: 1 1 100%;
+          aspect-ratio: auto;
+        }
       }
 
       footer {
@@ -135,23 +174,9 @@
         color: white;
       }
 
-      blockquote {
-        font-style: italic;
-        margin-top: 1rem;
-        color: #604652;
-      }
-
       @media (max-width: 800px) {
-        .bottom-section {
+        .section-row {
           flex-direction: column;
-        }
-
-        .climbing-content {
-          flex-direction: column;
-        }
-
-        .climbing-content img {
-          width: 100%;
         }
       }
     </style>
@@ -167,71 +192,187 @@
       </nav>
     </div>
 
-    <main class="fade-in">
-      <section class="intro" data-aos="fade-up">
+    <main>
+      <section class="intro">
         <h1 style="color: #c5705d">About Me</h1>
         <p>
           Hey, I'm Caden Wieties — a computer science student at the University
           of Arkansas. I build software that feels personal and useful, whether
-          it's a climbing tracker or a personal website like this one. I care
-          about clean design, creative functionality, and thoughtful
-          interaction.
+          it's a climbing tracker or a personal website like this one.
         </p>
         <p>
           Outside of coding, I'm into rock climbing, music, and exploring the
           creative intersections between tech and life. Oh yeah, and I am
-          pursuring a minor in mathematics, I love math!
+          pursuing a minor in mathematics — I love math!
         </p>
-        <p>
-          <strong style="color: #a35c4c"><u>Some Notes</u></strong
-          ><br />
-          <strong>• Languages:</strong> C++, Java, Python, HTML/CSS<br />
-          <strong>• Tools & Platforms</strong> Linux (WSL / Ubuntu), Bash,
-          Visual Studio Code, Eclipe IDE<br />
-          <strong>• Core Skills:</strong> Problem Solving, Teamwork, Leadership,
-          Time Management, Adaptability, Communication
-          <br />
-        </p>
+
+        <div class="toggle-title" onclick="toggleSection('lang')">
+          Languages <span class="toggle-icon" id="icon-lang">+</span>
+        </div>
+        <div class="toggle-content" id="content-lang">
+          <span class="badge">C++</span>
+          <span class="badge">Java</span>
+          <span class="badge">Python</span>
+          <span class="badge">HTML/CSS</span>
+          <span class="badge">SQL</span>
+        </div>
+
+        <div class="toggle-title" onclick="toggleSection('tools')">
+          Tools & Platforms <span class="toggle-icon" id="icon-tools">+</span>
+        </div>
+        <div class="toggle-content" id="content-tools">
+          <span class="badge">Oracle Fusion Cloud ERP</span>
+          <span class="badge">Oracle Integration Cloud (OIC)</span>
+          <span class="badge">XML</span>
+          <span class="badge">PLM/PIM</span>
+          <span class="badge">Microsoft Excel</span>
+          <span class="badge">Linux (WSL/Ubuntu)</span>
+          <span class="badge">Bash</span>
+          <span class="badge">VS Code</span>
+          <span class="badge">Eclipse</span>
+        </div>
+
+        <div class="toggle-title" onclick="toggleSection('skills')">
+          Core Skills <span class="toggle-icon" id="icon-skills">+</span>
+        </div>
+        <div class="toggle-content" id="content-skills">
+          <span class="badge">Master Data Management</span>
+          <span class="badge">Data Mapping</span>
+          <span class="badge">ERP Configuration</span>
+          <span class="badge">Data Governance</span>
+          <span class="badge">Scripting</span>
+          <span class="badge">Teamwork</span>
+          <span class="badge">Leadership</span>
+          <span class="badge">Problem Solving</span>
+          <span class="badge">Communication</span>
+        </div>
       </section>
 
-      <section class="bottom-section">
-        <div class="climbing-section" data-aos="fade-right">
-          <h2 style="color: #c5705d">Climbing Corner</h2>
-          <div class="climbing-content">
-            <img src="images/climbing-photo.jpg" alt="Caden climbing" />
-            <div>
-              <p><strong style="color: #a35c4c">Information:</strong></p>
-              <ul>
-                <li><strong>Gym:</strong> Boulders and Brews</li>
-                <li><strong>Goal:</strong> Send an outdoor V10 next season.</li>
-                <li><strong>Favorite Style:</strong> Dynamic moves.</li>
-                <li><strong>Years Climbing:</strong> 2</li>
-              </ul>
-              <p><strong style="color: #a35c4c">Achievements:</strong></p>
-              <ul>
-                <li>Boulder League Winner (2024)</li>
-                <li>Kilter Board Grade: V9</li>
-                <li>Flash Grade: V8</li>
-              </ul>
-              <p><strong style="color: #a35c4c">Current Gear:</strong></p>
-              <ul>
-                <li><strong>Shoes:</strong> Scarpa Drago LV</li>
-                <li><strong>Chalk:</strong> Metolious Super Chalk</li>
-                <li><strong>Climb Snack:</strong> Turkey Bites</li>
-              </ul>
-            </div>
+      <section class="section-row">
+        <div class="experience-section">
+          <h2 style="color: #c5705d">Experience</h2>
+          <p>
+            <strong
+              >IT - ERP Intern | Simmons Foods | Rogers, AR | June 2025 -
+              Current</strong
+            >
+          </p>
+          <ul>
+            <li>
+              Collaborate with the Master Data Management (MDM) team to manage
+              enterprise data within Oracle Fusion Cloud ERP.
+            </li>
+            <li>
+              Trace and map attributes across PLM and PIM systems using XML and
+              Oracle Integration Cloud (OIC).
+            </li>
+            <li>
+              Support ERP configuration and data validation tasks, improving
+              data quality and cross-functional efficiency.
+            </li>
+            <li>
+              Built Python scripts to automate ERP data generation, applying
+              business logic to create new item codes that streamlined
+              manufacturing and reduced operational costs.
+            </li>
+          </ul>
+          <p>
+            <strong
+              >Rink Staff Member | Starlight Skatium | Fayetteville, AR | Nov.
+              2021 - Dec. 2023</strong
+            >
+          </p>
+          <ul>
+            <li>
+              Served as a core team member for over two years in a fast-paced
+              event and customer service environment.
+            </li>
+            <li>
+              Managed safety protocols, music/lighting systems, and coordinated
+              group events and birthday parties.
+            </li>
+            <li>
+              Gained strengths in communication, teamwork, and conflict
+              resolution under pressure.
+            </li>
+          </ul>
+          <p>
+            <strong
+              >Robotics Youth Team Leader | Haas Hall Academy | Fayetteville, AR
+              | Sept. 2022 - May 2023</strong
+            >
+          </p>
+          <ul>
+            <li>
+              Mentored junior high school students in robotics design,
+              programming, and teamwork.
+            </li>
+            <li>
+              Led project planning and STEM outreach efforts that resulted in
+              team recognition and funding.
+            </li>
+          </ul>
+          <div class="toggle-title" onclick="toggleSection('certs')">
+            Certifications <span class="toggle-icon" id="icon-certs">+</span>
+          </div>
+          <div class="toggle-content" id="content-certs">
+            <ul>
+              <li>
+                SQL Essential Training, LinkedIn Learning – Issued June 2025
+              </li>
+              <li>
+                Excel Essential Training (Microsoft 365), LinkedIn Learning –
+                Issued May 2025
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="music-section" data-aos="fade-left">
+        <div class="music-section">
           <h2 style="color: #c5705d">Current Mix</h2>
           <p>This is what I’m probably climbing, coding, or chilling to:</p>
-          <iframe
-            allow="autoplay *; encrypted-media *;"
-            frameborder="0"
-            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
-            src="https://embed.music.apple.com/us/playlist/my-mix/pl.u-KVXBBlJuLoG4epy"
-          ></iframe>
+          <div
+            style="
+              width: 100%;
+              max-width: 775px;
+              margin-top: 1rem;
+              border-radius: 12px;
+              overflow: hidden;
+            "
+          >
+            <iframe
+              allow="autoplay *; encrypted-media *;"
+              frameborder="0"
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+              src="https://embed.music.apple.com/us/playlist/my-mix/pl.u-KVXBBlJuLoG4epy"
+              style="
+                width: 100%;
+                height: 450px;
+                border: none;
+                border-radius: 12px;
+                overflow: hidden;
+              "
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="climbing-section">
+        <h2 style="color: #c5705d">Climbing</h2>
+        <p>
+          Climbing is a big part of my life and the inspiration behind one of my
+          main development projects: the Climbing Tracker App.
+        </p>
+        <ul>
+          <li>Gym: Boulders and Brews</li>
+          <li>Years Climbing: 2</li>
+          <li>Favorite Style: Dynamic movement and board climbing</li>
+          <li>Outdoor Project Goal: Send a V10 this season</li>
+        </ul>
+        <div class="climbing-gallery">
+          <img src="images/climbing-photo.jpg" alt="Caden climbing 1" />
+          <img src="images/climbing-photo-2.png" alt="Caden climbing 2" />
+          <img src="images/climbing-photo-3.png" alt="Caden climbing 3" />
         </div>
       </section>
     </main>
@@ -239,9 +380,25 @@
     <footer>
       <p>© 2025 Caden Wieties</p>
     </footer>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
     <script>
-      AOS.init();
+      function toggleSection(key) {
+        const content = document.getElementById("content-" + key);
+        const icon = document.getElementById("icon-" + key);
+        const isOpen = content.classList.contains("open");
+
+        document
+          .querySelectorAll(".toggle-content")
+          .forEach((el) => el.classList.remove("open"));
+        document
+          .querySelectorAll(".toggle-icon")
+          .forEach((ic) => (ic.textContent = "+"));
+
+        if (!isOpen) {
+          content.classList.add("open");
+          icon.textContent = "-";
+        }
+      }
     </script>
   </body>
 </html>
